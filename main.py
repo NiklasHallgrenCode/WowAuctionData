@@ -31,7 +31,7 @@ def find_auctions_by_item_id(auctions_data, item_id):
     return matching_auctions
 
 def sum_bids_for_item(auctions):
-    total_bid = sum(auction['bid'] for auction in auctions)
+    total_bid = sum(auction['buyout'] for auction in auctions)
     return total_bid
 
 auth_token = AUTHORIZATION_TOKEN
@@ -42,7 +42,7 @@ if isinstance(data, dict):
     matching_auctions = find_auctions_by_item_id(data, item_id)
     if matching_auctions:
         total_bid_amount = sum_bids_for_item(matching_auctions)
-        print(f"Total bid amount for item ID {item_id} (gold): {total_bid_amount / 10000}")
+        print(f"Total buyout amount for item ID {item_id} (gold): {total_bid_amount / 10000}")
     else:
         print(f"No auctions found for item ID {item_id}.")
 else:
