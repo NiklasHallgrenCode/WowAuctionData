@@ -26,8 +26,10 @@ def fetch_auctions(auth_token):
 def find_auctions_by_item_id(auctions_data, item_id):
     matching_auctions = []
     for auction in auctions_data.get('auctions', []):
-        if auction['item']['id'] == item_id:
+        if auction['item']['id'] == item_id and (auction['buyout'] / auction['quantity'])  < 50000:
+        # if auction['item']['id'] == item_id :
             matching_auctions.append(auction)
+    matching_auctionz = sorted(matching_auctions, key=lambda x: x['buyout'])
     return matching_auctions
 
 def sum_bids_for_item(auctions):
