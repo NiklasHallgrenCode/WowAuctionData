@@ -43,6 +43,11 @@ def sum_bids_for_item(auctions):
     return total_bid
 
 
+def sum_quantity_for_item(auctions):
+    total_bid = sum(auction["quantity"] for auction in auctions)
+    return total_bid
+
+
 data = fetch_auctions()
 
 if isinstance(data, dict):
@@ -50,8 +55,9 @@ if isinstance(data, dict):
 
     if matching_auctions:
         total_bid_amount = sum_bids_for_item(matching_auctions)
+        total_quantity_amount = sum_quantity_for_item(matching_auctions)
         print(
-            f"Total buyout amount for item ID {ITEM_ID} (gold): {total_bid_amount / 10000}"
+            f"Total buyout amount for {total_quantity_amount} items with item ID {ITEM_ID} (gold): {total_bid_amount / 10000}"
         )
     else:
         print(
